@@ -1,10 +1,10 @@
 class MoviesController < ApplicationController
 
   def index
-    if params[:mov] == "aaa"
+    if params[:mov] == "Movie Title"
       @cssclass='highlight'
       @movies = Movie.order("title")
-    elsif params[:mov] == "bbb"
+    elsif params[:mov] == "release"
       @cssclass1='highlight'
       @movies = Movie.order("release_date")
     else
