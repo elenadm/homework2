@@ -1,11 +1,20 @@
 class MoviesController < ApplicationController
 
   def index
-    @movies = Movie.all
+    if params[:mov] == "aaa"
+      @cssclass='highlight'
+      @movies = Movie.order("title")
+    elsif params[:mov] == "bbb"
+      @cssclass1='highlight'
+      @movies = Movie.order("release_date")
+    else
+      @movies = Movie.all
+    end
   end
 
   def show
     @movie = find_movie
+
   end
 
   def new
@@ -43,8 +52,8 @@ class MoviesController < ApplicationController
     redirect_to movies_url
   end
 
-  private
 
+  private
   def find_movie
     Movie.find(params[:id])
   end
