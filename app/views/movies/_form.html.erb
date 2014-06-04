@@ -1,19 +1,24 @@
 <% if @movie.errors.any? %>
-  <div>
-    <h2>There were errors!</h2>
-    <p><%= @movie.errors.full_messages.to_sentence %></p>
-  </div>
+    <div>
+      <h2>There were errors!</h2>
+    </div>
 <% end %>
 
 <%= form_for @movie do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
 
-  <%= f.label :rating %>
-  <%= f.text_field :rating %>
+    <%= @movie.errors[:title].to_sentence %>
 
-  <%= f.label :release_date %>
-  <%= f.text_field :release_date %>
+    <%= f.label :rating %>
+    <%= f.text_field :rating %>
 
-  <%= f.submit "Submit" %>
+    <%= @movie.errors[:rating].to_sentence %>
+
+    <%= f.label :release_date %>
+    <%= f.text_field :release_date %>
+
+    <%= @movie.errors[:release_date].to_sentence %>
+
+    <p><%= f.submit "Submit" %></p>
 <% end %>
