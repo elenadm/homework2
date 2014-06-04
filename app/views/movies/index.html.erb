@@ -11,9 +11,9 @@
   <thead>
   <tr>
 
-    <th class=<%= @cssclass %>><%= link_to 'Movie Title', movies_path(mov: "Movie Title") %> </th>
+    <th class=<%= 'highlight' if params[:mov]=='Movie Title' %>><%= link_to 'Movie Title', movies_path(mov: 'title') %> </th>
     <th>Rating</th>
-    <th class=<%= @cssclass1 %>><%= link_to 'Release Date', movies_path(mov: "release") %></th>
+    <th class=<%= 'highlight' if params[:mov]=='release'%>><%= link_to 'Release Date', movies_path(mov: 'release_date') %></th>
     <th>More Info</th>
   </tr>
   </thead>

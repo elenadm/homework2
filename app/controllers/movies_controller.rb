@@ -1,20 +1,12 @@
 class MoviesController < ApplicationController
 
   def index
-    @all_ratings = Movie.select('rating').distinct.order(:rating).to_a.map{|el| el.rating}
+    @all_ratings = Movie.select('rating').distinct.order(:rating).to_a.map { |el| el.rating }
     @movies = Movie.all
     if params[:ratings]
       @movies = @movies.where(rating: params[:ratings].keys)
     end
-    if params[:mov] == "Movie Title"
-      @cssclass='highlight'
-      @movies = @movies.order("title")
-    elsif params[:mov] == "release"
-      @cssclass1='highlight'
-      @movies = @movies.order("release_date")
-    else
-      @movies = @movies.all
-    end
+    @movies = Movie.order(params[:mov])
   end
 
   def show
