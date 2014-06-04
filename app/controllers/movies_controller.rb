@@ -1,17 +1,25 @@
 class MoviesController < ApplicationController
+  helper_method :ratings_params, :all_ratings
 
   def index
-    @all_ratings = Movie.select('rating').distinct.order(:rating).to_a.map { |el| el.rating }
+    session[:ratings] = params[:ratings] if params[:ratings]
+    session[:mov] = params[:mov] if params[:mov]
     @movies = Movie.all
-    if params[:ratings]
-      @movies = @movies.where(rating: params[:ratings].keys)
-    end
-    @movies = Movie.order(params[:mov])
+    @movies = @movies.where(rating: ratings_params.keys)
+    @movies = @movies.order(params[:mov])
   end
 
   def show
     @movie = find_movie
 
+  end
+
+  def all_ratings
+    @all_ratings ||= Movie.all_ratings
+  end
+
+  def ratings_params
+    session[:ratings] || Hash[all_ratings.map { |x| [x, "1"] }]
   end
 
   def new
