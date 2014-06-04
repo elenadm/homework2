@@ -12,9 +12,9 @@
   <thead>
   <tr>
 
-    <th class=<%= 'highlight' if params[:mov]=='Movie Title' %>><%= link_to 'Movie Title', movies_path(mov: 'title') %> </th>
+    <th class=<%= 'highlight' if params[:mov]=='title' %>><%= link_to 'Movie Title', movies_path(mov: 'title') %> </th>
     <th>Rating</th>
-    <th class=<%= 'highlight' if params[:mov]=='release'%>><%= link_to 'Release Date', movies_path(mov: 'release_date') %></th>
+    <th class=<%= 'highlight' if params[:mov]=='release_date'%>><%= link_to 'Release Date', movies_path(mov: 'release_date') %></th>
     <th>More Info</th>
   </tr>
   </thead>

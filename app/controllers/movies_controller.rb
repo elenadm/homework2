@@ -4,9 +4,7 @@ class MoviesController < ApplicationController
   def index
     session[:ratings] = params[:ratings] if params[:ratings]
     session[:mov] = params[:mov] if params[:mov]
-    @movies = Movie.all
-    @movies = @movies.where(rating: ratings_params.keys)
-    @movies = @movies.order(params[:mov])
+    @movies = Movie.where(rating: ratings_params.keys).order(params[:mov])
   end
 
   def show
