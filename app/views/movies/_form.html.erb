@@ -12,13 +12,18 @@
 
     <%= f.label :rating %>
     <%= f.text_field :rating %>
-
+    <% Movie.all_avaliable_ratings.each do |rating| %>
+        <%= radio_button_tag "movie[rating]", rating, @rating==rating %>
+        <%= label_tag "rating_#{rating}", rating %>
+    <% end %>
     <%= @movie.errors[:rating].to_sentence %>
 
     <%= f.label :release_date %>
     <%= f.text_field :release_date %>
 
+
     <%= @movie.errors[:release_date].to_sentence %>
+
 
     <p><%= f.submit "Submit" %></p>
 <% end %>
