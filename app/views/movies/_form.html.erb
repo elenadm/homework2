@@ -13,8 +13,10 @@
     <%= f.label :rating %>
     <%= f.text_field :rating %>
     <% Movie.all_available_ratings.each do |rating| %>
-        <%= radio_button_tag "movie[rating]", rating, @rating==rating %>
-        <%= label_tag "rating_#{rating}", rating %>
+        <div>
+          <%= radio_button_tag "movie[rating]", rating %>
+          <%= rating %>
+        </div>
     <% end %>
     <%= @movie.errors[:rating].to_sentence %>
 
