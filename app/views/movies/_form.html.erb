@@ -12,7 +12,7 @@
 
     <%= f.label :rating %>
     <%= f.text_field :rating %>
-    <% Movie.all_avaliable_ratings.each do |rating| %>
+    <% Movie.all_available_ratings.each do |rating| %>
         <%= radio_button_tag "movie[rating]", rating, @rating==rating %>
         <%= label_tag "rating_#{rating}", rating %>
     <% end %>
