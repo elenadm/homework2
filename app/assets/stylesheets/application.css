@@ -72,3 +72,10 @@ table#movies th.highlight {
 .field_with_errors label {
     color: #fff;
 }
+table tr.oddrow {
+    background-color: #FFFFFF;
+}
+
+table tr.evenrow {
+    background-color: #FFFF99;
+}

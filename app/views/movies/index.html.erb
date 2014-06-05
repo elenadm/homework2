@@ -20,7 +20,7 @@
   </thead>
   <tbody>
   <% @movies.each do |movie| %>
-      <tr>
+      <tr class="<%= cycle('oddrow', 'evenrow') -%>">
         <td><%= movie.title %></td>
         <td><%= movie.rating %></td>
         <td><%= movie.release_date %></td>
