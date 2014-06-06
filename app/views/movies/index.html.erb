@@ -11,9 +11,9 @@
 <table id="movies">
   <thead>
   <tr>
-    <th class=<%= 'highlight' if params[:mov]=='title' %>><%= link_to 'Movie Title', session[:mov].has_value?('asc')? movies_path(mov: 'title', direction: :desc) : movies_path(mov: 'title', direction: :asc) %> </th>
+    <th class=<%= 'highlight' if params[:mov]=='title' %>><%= link_to 'Movie Title', (params[:mov]=='title' and session[:mov].has_value?('desk'))? movies_path(mov: 'title', direction: :asc) : movies_path(mov: 'title', direction: :desc) %> </th>
     <th>Rating</th>
-    <th class=<%= 'highlight' if params[:mov]=='release_date' %>><%= link_to 'Release Date', session[:mov].has_value?('asc')? movies_path(mov: 'release_date', direction: :desc) : movies_path(mov: 'release_date', direction: :asc)%></th>
+    <th class=<%= 'highlight' if params[:mov]=='release_date' %>><%= link_to 'Release Date', (session[:mov].keys=='release_date' and session[:mov].has_value?('desk'))? movies_path(mov: 'release_date', direction: :asc) : movies_path(mov: 'release_date', direction: :desc)%></th>
     <th>More Info</th>
   </tr>
   </thead>
@@ -23,7 +23,7 @@
         <td><%= movie.title %></td>
         <td><%= movie.rating %></td>
         <td><%= movie.release_date %></td>
-        <td><%= link_to "More about #{movie.title}", movie_path(movie) %></td>
+        <td maxlength="10"><%= link_to ("More about #{movie.title}".first(4)+'...'), movie_path(movie) %></td>
       </tr>
   <% end %>
   </tbody>
