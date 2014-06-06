@@ -7,7 +7,6 @@
 <%= form_for @movie do |f| %>
     <%= f.label :title %>
     <%= f.text_field :title %>
-
     <%= @movie.errors[:title].to_sentence %>
 
     <%= f.label :rating %>
@@ -22,10 +21,10 @@
 
     <%= f.label :release_date %>
     <%= f.text_field :release_date %>
-
-
     <%= @movie.errors[:release_date].to_sentence %>
 
+    <%= f.label :description %>
+    <%= f.text_area :description %>
 
     <p><%= f.submit "Submit" %></p>
 <% end %>
