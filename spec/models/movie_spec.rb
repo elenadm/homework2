@@ -30,5 +30,10 @@ describe Movie do
       end
 
     end
+    context ".all_available_ratings" do
+      it 'Rating for list - ratings' do
+        expect(Movie.all_available_ratings).to eq(['G','PG','PG-13','R', 'NC-17'])
+      end
+    end
   end
   end
