@@ -1,5 +1,4 @@
 <h1>All Movies</h1>
-<%= params.inspect %>
 <%= form_tag movies_path, :method => :get do %>
     Include:
     <% all_ratings.each do |rating| %>
@@ -11,9 +10,9 @@
 <table id="movies">
   <thead>
   <tr>
-    <th class=<%= 'highlight' if params[:mov]=='title' %>><%= link_to 'Movie Title', (params[:mov]=='title' and session[:mov].has_value?('desk'))? movies_path(mov: 'title', direction: :asc) : movies_path(mov: 'title', direction: :desc) %> </th>
+    <th><%= sortable 'title', 'Movie Title' %> </th>
     <th>Rating</th>
-    <th class=<%= 'highlight' if params[:mov]=='release_date' %>><%= link_to 'Release Date', (session[:mov].keys=='release_date' and session[:mov].has_value?('desk'))? movies_path(mov: 'release_date', direction: :asc) : movies_path(mov: 'release_date', direction: :desc)%></th>
+    <th><%= sortable 'release_date', 'Release Date' %></th>
     <th>More Info</th>
   </tr>
   </thead>
