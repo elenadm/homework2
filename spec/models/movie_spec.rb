@@ -37,23 +37,24 @@ describe Movie do
     end
 
     context ":list" do
-      let!(:movie_one) { Movie.create(title: "Pulp fiction", rating: "NC-17", release_date: Date.today) }
       let!(:movie_two) { Movie.create(title: "The blind side", rating: "PG-13", release_date: 1.day.ago) }
+      let!(:movie_one) { Movie.create(title: "Pulp fiction", rating: "NC-17", release_date: Date.today) }
+
 
       it 'orders by ascending title' do
-        Movie.all.should eq [movie_one, movie_two]
+        Movie.list(order:("title ASC")).should eq [movie_one, movie_two]
       end
 
       it 'orders by ascending release_date' do
-        Movie.all.order(:release_date).should eq [movie_two, movie_one]
+        Movie.list(order:("release_date ASC")).should eq [movie_two, movie_one]
       end
 
       it 'orders by descending title' do
-        Movie.all.order(title: :desc).should eq [movie_two, movie_one]
+        Movie.list(order:("title DESC")).should eq [movie_two, movie_one]
       end
 
       it 'orders by descending release_date' do
-        Movie.all.order(release_date: :desc).should eq [movie_one, movie_two]
+        Movie.list(order:("release_date DESC")).should eq [movie_one, movie_two]
       end
 
     end
