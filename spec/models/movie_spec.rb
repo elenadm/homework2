@@ -71,7 +71,43 @@ describe Movie do
       it 'Orders with ratings' do
         Movie.list(rating: ['G', 'PG', 'PG-13', 'R', 'NC-17'], order: ("title DESC")).should eq [movie_two, movie_one]
       end
+    end
 
+    context "validates" do
+      before(:each) do
+        @movie_test = Movie.create(title: "Pulp fiction", rating: "NC-17", release_date: Date.today, description: 'The lives of two mob hit men, a boxer, a gangster wife, and a pair of diner bandits intertwine in four tales of violence and redemption.')
+      end
+      it "is valid with valid attributes" do
+        @movie_test.should be_valid
+      end
+
+      it "is not valid without a title" do
+        @movie_test.title = nil
+        @movie_test.should_not be_valid
+      end
+
+      it "is not valid without a rating" do
+        @movie_test.rating = nil
+        @movie_test.should_not be_valid
+      end
+
+      it "is not valid without a list rating" do
+        @movie_test.rating = 'P'
+        @movie_test.errors_on(:rating).should include("is not included in the list")
+        @movie_test.should_not be_valid
+      end
+
+      it "is not valid without a release_date" do
+        @movie_test.release_date = nil
+        @movie_test.errors_on(:release_date).should include("looks bad")
+        @movie_test.should_not be_valid
+      end
+
+      it "is not valid without format date for release_date" do
+        @movie_test.release_date = 'today'
+        @movie_test.errors_on(:release_date).should include("looks bad")
+        @movie_test.should_not be_valid
+      end
     end
   end
 end
