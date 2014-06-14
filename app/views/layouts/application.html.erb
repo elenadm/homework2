@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<h1 class="title">Imdb</h1>
+<h1 class="title"><%= link_to "Imdb", root_path %></h1>
 
 <div class='authentication'>
   <% if signed_in? %>
