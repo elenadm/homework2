@@ -1,5 +1,6 @@
 <%= render 'more_description', movie: @movie %>
-
+<% if admin? %>
 <%= link_to "Edit", [:edit, @movie] %>
 <%= button_to "Delete", @movie, method: :delete, data: { confirm: "Are you sure?" } %>
+<% end %>
 <%= link_to "Back to movie list", movies_path %>

@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   before_filter :authorize
-  helper_method :ratings_params, :all_ratings
+  helper_method :ratings_params, :all_ratings,:admin?
 
   def index
     session[:ratings] = params[:ratings] if params[:ratings]
@@ -63,6 +63,10 @@ class MoviesController < ApplicationController
 
   def movie_params
     params[:movie].permit(:title, :rating, :release_date, :description)
+  end
+  def admin?
+    #TODO: will be implemented later
+    false
   end
 
 end
