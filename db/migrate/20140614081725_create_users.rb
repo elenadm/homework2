@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :encrypted_password, limit: 128, null: false
       t.string :confirmation_token, limit: 128
       t.string :remember_token, limit: 128, null: false
+      t.integer :admin
     end
 
     add_index :users, :email

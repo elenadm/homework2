@@ -64,9 +64,9 @@ class MoviesController < ApplicationController
   def movie_params
     params[:movie].permit(:title, :rating, :release_date, :description)
   end
+
   def admin?
-    #TODO: will be implemented later
-    false
+    current_user.admin == 1
   end
 
 end
