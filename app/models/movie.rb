@@ -4,6 +4,8 @@ class Movie < ActiveRecord::Base
             inclusion: {in: ['G', 'PG', 'PG-13', 'R', 'NC-17'], allow_blank: true}
   validates :release_date, presence: {message: "looks bad"}
 
+
+  mount_uploader :avatar, AvatarUploader
   scope :list, ->(options) {
     res = all
     res = res.where(rating: options[:rating]) if options.key? :rating
