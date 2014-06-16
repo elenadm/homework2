@@ -9,7 +9,7 @@
     <%= f.text_field :title %>
     <%= @movie.errors[:title].to_sentence %>
     <div>
-      <%= image_tag(@movie.avatar_url) if @movie.avatar? %>
+      <%= image_tag(@movie.avatar.large_avatar.url) if @movie.avatar? %>
       <br>
       <%= f.file_field :avatar %>
     </div>

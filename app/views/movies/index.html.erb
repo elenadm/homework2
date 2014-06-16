@@ -19,7 +19,7 @@
   <tbody>
   <% @movies.each do |movie| %>
       <tr class="<%= cycle('oddrow', 'evenrow') -%>">
-        <td><%= movie.title %></td>
+        <td><%= movie.title %><%= image_tag(movie.avatar.small_avatar.url) if movie.avatar? %></td>
         <td><%= movie.rating %></td>
         <td><%= movie.release_date %></td>
         <td><%= truncate(movie.description, length: 15) %><%= link_to ('more'), movie_path(movie) %></td>
@@ -28,5 +28,5 @@
   </tbody>
 </table>
 <% if admin? %>
-<%= link_to 'Add new movie', new_movie_path %>
+    <%= link_to 'Add new movie', new_movie_path %>
 <% end %>

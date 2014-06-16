@@ -30,8 +30,8 @@ gem 'rspec-rails', '~> 2.0'
 
 gem 'clearance'
 
-gem 'carrierwave', '~> 0.9.0'
-gem 'mini_magick', github: 'minimagick/minimagick', ref: '6d0f8f953112cce6324a524d76c7e126ee14f392'
+gem 'carrierwave'#, '~> 0.9.0'
+gem 'mini_magick'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
