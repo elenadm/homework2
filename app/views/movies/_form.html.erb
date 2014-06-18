@@ -8,7 +8,11 @@
     <%= f.label :title %>
     <%= f.text_field :title %>
     <%= @movie.errors[:title].to_sentence %>
-
+    <div>
+      <%= image_tag(@movie.avatar.large_avatar.url) %>
+      <br>
+      <%= f.file_field :avatar %>
+    </div>
     <%= f.label :rating %>
     <%= f.text_field :rating %>
     <% Movie.all_available_ratings.each do |rating| %>

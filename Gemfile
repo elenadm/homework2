@@ -29,6 +29,9 @@ gem 'spring',        group: :development
 gem 'rspec-rails', '~> 2.0'
 
 gem 'clearance'
+
+gem 'carrierwave'#, '~> 0.9.0'
+gem 'mini_magick'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
