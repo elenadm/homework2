@@ -1,7 +1,6 @@
 class MoviePolicy < Struct.new(:user, :movie)
   def show?
-    user.admin? || !movie.draft?
-    true
+    user.admin? || user.id == movie.user.id || movie.published?
   end
 
   def create?
@@ -12,8 +11,11 @@ class MoviePolicy < Struct.new(:user, :movie)
   alias_method :new?, :create?
 
   def update?
-    user.admin? || user == movie.user
-    true
+    user.admin? || user.id == movie.user.id
+  end
+
+  def publication?
+    user.admin?
   end
 
   alias_method :edit?, :update?

@@ -15,6 +15,8 @@
     <th>Rating</th>
     <th><%= sortable 'release_date', 'Release Date' %></th>
     <th>More Info</th>
+    <th>Status</th>
+
   </tr>
   </thead>
   <tbody>
@@ -25,8 +27,10 @@
         <td><%= movie.rating %></td>
         <td><%= movie.release_date %></td>
         <td><%= truncate(movie.description, length: 15) %><%= link_to ('more'), movie_path(movie) %></td>
+        <td>
+          <% if current_user.admin==true or !movie.published %> <%= movie.published %>
+          <% end %></td>
       </tr>
   <% end %>
   </tbody>
-</table>
-<%= link_to 'Add new movie', new_movie_path %>
+</table><%= link_to 'Add new movie', new_movie_path %>

@@ -6,10 +6,14 @@ class MoviesController < ApplicationController
     session[:ratings] = params[:ratings] if params[:ratings]
     session[:mov] = params[:mov]
     @movies = Movie.list(rating: ratings_params.keys, order: ("#{params[:mov]}" + " " + "#{params[:direction]}"))
+    unless current_user.admin
+      @movies = @movies.where("(published = ? OR user_id = ?)", true, current_user.id)
+    end
   end
 
   def show
     @movie = find_movie
+    authorize @movie
   end
 
   def all_ratings
@@ -27,8 +31,8 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new movie_params
-    @movie.user = current_user
-    #authorize @movie
+    @movie.user_id = current_user.id
+    authorize @movie
 
     if @movie.save
       flash[:notice] = "#{@movie.title} was successfully created."
@@ -46,12 +50,16 @@ class MoviesController < ApplicationController
   def update
     @movie = find_movie
     authorize @movie
+    unless current_user.admin?
+      @movie.published = false
+    end
     if @movie.update_attributes(movie_params)
       flash[:notice] = "#{@movie.title} was successfully updated."
       redirect_to @movie
     else
       render 'edit'
     end
+
   end
 
   def destroy
@@ -61,6 +69,18 @@ class MoviesController < ApplicationController
     redirect_to movies_url
   end
 
+  def publication
+    @movie = find_movie
+    authorize @movie
+    @movie.published = true
+    if @movie.save
+      flash[:notice] = "Movie '#{@movie.title}' publicated."
+      redirect_to @movie
+    else
+      flash[:error] = "Movie '#{@movie.title}' has not publicated."
+      render :edit
+    end
+  end
 
   private
   def allow
@@ -78,5 +98,11 @@ class MoviesController < ApplicationController
   def author(movie)
     movie.user.id == current_user.id ? 'you' : movie.user.email
   end
+=begin
+  def status(user)
+   user.admin==true ? movie.published : ''
+
+  end
+=end
 end
 

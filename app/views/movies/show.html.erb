@@ -1,4 +1,7 @@
 <%= render 'more_description', movie: @movie %>
 <%= link_to_if(allow.edit?, "Edit", [:edit, @movie]) {} %>
-<%= button_to "Delete", @movie, method: :delete, data: { confirm: "Are you sure?" } %>
+<%= button_to "Delete", @movie, method: :delete, data: {confirm: "Are you sure?"} %>
+<% if current_user.admin and not @movie.published%>
+    <%= button_to "Public", publication_movie_path(@movie), method: :patch, data: {confirm: "Are you sure?"} %>
+<% end %>
 <%= link_to "Back to movie list", movies_path %>
