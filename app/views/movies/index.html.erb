@@ -20,7 +20,7 @@
   <tbody>
   <% @movies.each do |movie| %>
       <tr class="<%= cycle('oddrow', 'evenrow') -%>">
-        <td><%= author movie %></td>
+        <td <%if (author movie) =='you'%> class='author'<%end%>><%= author movie %></td>
         <td><%= movie.title %><%= image_tag(movie.avatar.small_avatar.url) %></td>
         <td><%= movie.rating %></td>
         <td><%= movie.release_date %></td>
