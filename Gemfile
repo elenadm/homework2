@@ -33,6 +33,7 @@ gem 'clearance'
 gem 'carrierwave'#, '~> 0.9.0'
 gem 'mini_magick'
 
+gem 'hirb'
 gem 'pundit'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -10,6 +10,7 @@
 <table id="movies">
   <thead>
   <tr>
+    <th>Author</th>
     <th><%= sortable 'title', 'Movie Title' %> </th>
     <th>Rating</th>
     <th><%= sortable 'release_date', 'Release Date' %></th>
@@ -19,6 +20,7 @@
   <tbody>
   <% @movies.each do |movie| %>
       <tr class="<%= cycle('oddrow', 'evenrow') -%>">
+        <td><%= movie.user.email %></td>
         <td><%= movie.title %><%= image_tag(movie.avatar.small_avatar.url) %></td>
         <td><%= movie.rating %></td>
         <td><%= movie.release_date %></td>
