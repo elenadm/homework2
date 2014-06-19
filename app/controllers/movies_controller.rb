@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   before_action :clearance_authorize
-  helper_method :ratings_params, :all_ratings, :allow
+  helper_method :ratings_params, :all_ratings, :allow, :current_user, :author
 
   def index
     session[:ratings] = params[:ratings] if params[:ratings]
@@ -28,7 +28,7 @@ class MoviesController < ApplicationController
   def create
     @movie = Movie.new movie_params
     @movie.user = current_user
-    authorize @movie
+    #authorize @movie
 
     if @movie.save
       flash[:notice] = "#{@movie.title} was successfully created."
@@ -75,6 +75,8 @@ class MoviesController < ApplicationController
     params[:movie].permit(:title, :rating, :release_date, :description, :avatar)
   end
 
-
+  def author(movie)
+    movie.user.id == current_user.id ? 'you' : movie.user.email
+  end
 end
 
