@@ -6,7 +6,7 @@
 
   ['Escape', 'Starting', 'Something'].each do |f|
     movie = Movie.new
-    movie.title = "#{f}_#{c}"
+    movie.title = "#{f}#{c}"
     movie.rating = ['G', 'PG', 'PG-13', 'R', 'NC-17'].sample
     movie.release_date = Time.now
     movie.published = [true, true, false].sample
