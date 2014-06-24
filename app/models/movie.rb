@@ -1,4 +1,6 @@
 class Movie < ActiveRecord::Base
+  serialize :old_values
+  before_update :save_old_values
   belongs_to :user
 
   validates :title, presence: true
@@ -22,4 +24,15 @@ class Movie < ActiveRecord::Base
   def self.all_ratings
     Movie.select('rating').distinct.order(:rating).pluck(:rating)
   end
+protected
+
+def save_old_values
+  unless self.old_values.present?
+    self.old_values = self.attributes.merge(self.changed_attributes)
+    self.old_values.delete("old_values")
+  end
 end
+end
+
+
+
